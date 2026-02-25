@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://* http://localhost:*" />
+  <title>StockSeer — AI Price Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="static/css/style.css"/>
+  
+  
+</head>
+<body>
+
+  
+  <nav class="navbar">
+    <a href="#" class="brand">Stock<span>Seer</span></a>
+    <ul class="nav-links">
+      <li><a href="#predict">Predict</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-badge">ML Powered</div>
+  </nav>
+
+  
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <p class="eyebrow">AI · Machine Learning · Finance</p>
+      <h1>Predict Stock Prices<br/><span class="accent">With Precision.</span></h1>
+      <p class="hero-sub">
+        Enter any stock ticker and get an AI-generated price prediction
+        powered by our trained machine learning model — instantly.
+      </p>
+      <a href="#predict" class="btn-primary hero-cta">Try a Prediction ↓</a>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="75" x2="480" y2="75" stroke="rgba(56,189,248,.1)" stroke-width="1"/>
+        <line x1="0" y1="150" x2="480" y2="150" stroke="rgba(56,189,248,.1)" stroke-width="1"/>
+        <line x1="0" y1="225" x2="480" y2="225" stroke="rgba(56,189,248,.1)" stroke-width="1"/>
+        <path d="M0 220 L50 200 L100 210 L150 170 L200 160 L250 130 L300 100 L350 110 L400 75 L480 50"
+          stroke="#38bdf8" stroke-width="2.5" fill="none"
+          stroke-dasharray="900" stroke-dashoffset="900">
+          <animate attributeName="stroke-dashoffset" from="900" to="0" dur="2.2s" fill="freeze" begin="0.3s"/>
+        </path>
+        <path d="M400 75 L440 52 L480 35"
+          stroke="#34d399" stroke-width="2.5" fill="none" stroke-dasharray="5 4" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.4s" fill="freeze" begin="2.5s"/>
+        </path>
+        <path d="M0 220 L50 200 L100 210 L150 170 L200 160 L250 130 L300 100 L350 110 L400 75 L480 50 L480 300 L0 300 Z"
+          fill="url(#hg)"/>
+        <circle cx="400" cy="75" r="5" fill="#38bdf8"/>
+        <circle cx="480" cy="35" r="5" fill="#34d399">
+          <animate attributeName="r" values="5;8;5" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0.5;1" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <text x="420" y="28" fill="#34d399" font-size="11" font-family="DM Mono">PREDICTED</text>
+      </svg>
+    </div>
+  </header>
+
+ 
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="t-item"><b>AAPL</b> $189.45 <em class="up">+1.2%</em></span>
+      <span class="t-item"><b>TSLA</b> $248.10 <em class="dn">-0.8%</em></span>
+      <span class="t-item"><b>NVDA</b> $875.30 <em class="up">+3.4%</em></span>
+      <span class="t-item"><b>MSFT</b> $415.20 <em class="up">+0.5%</em></span>
+      <span class="t-item"><b>AMZN</b> $185.60 <em class="up">+1.8%</em></span>
+      <span class="t-item"><b>GOOG</b> $160.40 <em class="dn">-0.3%</em></span>
+      <span class="t-item"><b>META</b> $520.80 <em class="up">+2.1%</em></span>
+      <span class="t-item"><b>INFY</b> $19.80  <em class="up">+0.9%</em></span>
+      
+      <span class="t-item"><b>AAPL</b> $189.45 <em class="up">+1.2%</em></span>
+      <span class="t-item"><b>TSLA</b> $248.10 <em class="dn">-0.8%</em></span>
+      <span class="t-item"><b>NVDA</b> $875.30 <em class="up">+3.4%</em></span>
+      <span class="t-item"><b>MSFT</b> $415.20 <em class="up">+0.5%</em></span>
+      <span class="t-item"><b>AMZN</b> $185.60 <em class="up">+1.8%</em></span>
+      <span class="t-item"><b>GOOG</b> $160.40 <em class="dn">-0.3%</em></span>
+      <span class="t-item"><b>META</b> $520.80 <em class="up">+2.1%</em></span>
+      <span class="t-item"><b>INFY</b> $19.80  <em class="up">+0.9%</em></span>
+    </div>
+  </div>
+
+  
+  <section class="predict-section" id="predict">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label"> Prediction Engine</span>
+        <h2>Get Your Prediction</h2>
+        <p>Enter a stock ticker symbol and an optional date, then click Predict.</p>
+      </div>
+
+      
+      <div class="card form-card">
+        <form id="predictForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="symbol">Stock Symbol <span class="required">*</span></label>
+              <div class="input-wrap">
+                <span class="input-icon">◈</span>
+                <input
+                  type="text"
+                  id="symbol"
+                  name="symbol"
+                  placeholder="e.g. AAPL, TSLA, INFY"
+                  maxlength="10"
+                  autocomplete="off"
+                  spellcheck="false"
+                  required
+                />
+              </div>
+              <span class="field-error" id="symbolError"></span>
+            </div>
+            <div class="form-group">
+              <label for="date">Target Date <span class="optional">(optional)</span></label>
+              <div class="input-wrap">
+                <span class="input-icon">◷</span>
+                <input type="date" id="date" name="date"/>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary btn-predict" id="submitBtn">
+            <span class="btn-text">Predict Price</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+      </div>
+
+      
+      <div class="loading-state" id="loadingState" hidden>
+        <div class="spinner">
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring delay1"></div>
+          <div class="spinner-ring delay2"></div>
+        </div>
+        <p class="loading-text">Running prediction model<span class="dots"></span></p>
+      </div>
+
+      
+      <div class="error-state card" id="errorState" hidden>
+        <div class="error-icon">⚠</div>
+        <h3 id="errorTitle">Something went wrong</h3>
+        <p id="errorMsg">An unexpected error occurred. Please try again.</p>
+        <button class="btn-outline" onclick="clearResult()">Try Again</button>
+      </div>
+
+      
+      <div class="result-wrapper" id="resultWrapper" hidden>
+        
+        <div class="result-cards">
+          <div class="result-card primary-card">
+            <span class="rc-label">Predicted Price</span>
+            <span class="rc-value price" id="rPrice">—</span>
+            <span class="rc-sub" id="rSymbolBadge">—</span>
+          </div>
+          <div class="result-card">
+            <span class="rc-label">Confidence</span>
+            <span class="rc-value" id="rConf">—</span>
+            <div class="conf-bar-wrap">
+              <div class="conf-bar" id="confBar"></div>
+            </div>
+          </div>
+          <div class="result-card">
+            <span class="rc-label">Signal</span>
+            <span class="rc-value signal" id="rSignal">—</span>
+            <span class="rc-sub" id="rSignalSub">—</span>
+          </div>
+          <div class="result-card">
+            <span class="rc-label">Date</span>
+            <span class="rc-value date-val" id="rDate">—</span>
+            <span class="rc-sub">prediction date</span>
+          </div>
+        </div>
+
+        
+        <div class="card chart-card">
+          <div class="chart-header">
+            <h3>Price Trend &amp; Prediction</h3>
+            <span class="chart-badge" id="chartBadge">—</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+
+        
+        <details class="raw-response card">
+          <summary>View Raw API Response</summary>
+          <pre id="rawJson"></pre>
+        </details>
+
+        <button class="btn-outline new-prediction" onclick="clearResult()">← New Prediction</button>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label"> About the Project</span>
+          <h2>Built on Real ML</h2>
+          <p>
+            StockSeer is powered by a machine learning model trained on years of
+            historical market data. The model analyses price patterns, volume trends,
+            and technical indicators to generate forward-looking price estimates.
+          </p>
+          <p>
+            The website securely connects to the prediction API through a server-side
+            proxy — your API key never touches the browser.
+          </p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="ac-icon">🧠</div>
+            <h4>ML Model</h4>
+            <p>Trained ensemble model with LSTM &amp; gradient boosting layers</p>
+          </div>
+          <div class="about-card">
+            <div class="ac-icon">🔒</div>
+            <h4>Secure API</h4>
+            <p>API key stored server-side. Never exposed to the browser.</p>
+          </div>
+          <div class="about-card">
+            <div class="ac-icon">⚡</div>
+            <h4>Real-time</h4>
+            <p>Live predictions returned in under 2 seconds on average</p>
+          </div>
+          <div class="about-card">
+            <div class="ac-icon">📊</div>
+            <h4>Visualised</h4>
+            <p>Chart.js powered trend graph with confidence overlay</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span class="brand">Stock<span>Seer</span></span>
+      <p>ML-powered stock price predictions. Not financial advice.</p>
+      <p class="footer-tech">Flask · Vanilla JS · Chart.js · Python</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+</html>
